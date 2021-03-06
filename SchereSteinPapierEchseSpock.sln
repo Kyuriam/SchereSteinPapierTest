@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchereSteinPapierEchseSpock", "SchereSteinPapierEchseSpock\SchereSteinPapierEchseSpock.csproj", "{6A02E5C3-A770-474C-B171-CB073E5F8DF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{E8D436B2-BBF0-47D1-B586-74252F1CF259}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6A02E5C3-A770-474C-B171-CB073E5F8DF5} = {6A02E5C3-A770-474C-B171-CB073E5F8DF5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

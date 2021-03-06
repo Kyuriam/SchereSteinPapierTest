@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ZeichenKlasse;
 
-namespace SchereSteinPapierEchseSpock
+namespace SSPES
 {
-    class Program
+    public class Program
     {
         // Die Methode für eine Runde Schere Stein Papier Echse Spock
         // Rekursion bei Wiederspiel Bedarf des Spielers
