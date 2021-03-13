@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ZeichenKlasse
 {
     // Die Klasse Zeichen sind die jeweiligen Handzeichen,
-    // mit dem string name und dem string array besiegt ( alle Zeichen gegen das jeweilige Zeichen gewinnt )
+    // mit dem string name und dem string array besiegt ( alle Zeichen gegen die das jeweilige Zeichen gewinnt )
     public class Zeichen
     {
         string name;

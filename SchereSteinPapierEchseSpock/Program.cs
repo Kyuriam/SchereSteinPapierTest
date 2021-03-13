@@ -5,71 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZeichenKlasse;
+using Spiellogik;
+using WebApplication1.Controllers;
 
-namespace SSPES
+namespace Main
 {
     public class Program
     {
         // Die Methode für eine Runde Schere Stein Papier Echse Spock
-        // Rekursion bei Wiederspiel Bedarf des Spielers
-        public void spiel(string a)
+        // Rekursion bei Rückspiel Bedarf des Spielers
+        // Der Parameter 'name' ist ein String welcher den Spielernamen wiederspiegelt
+        public void spiel(string name)
         {
-            string name = a;
-            // Alle Zeichen die mitspielen sollen werden initialisiert
-            Zeichen Schere = new Zeichen("Schere", new string[] { "Papier", "Echse" });
-            Zeichen Stein  = new Zeichen("Stein" , new string[] { "Schere", "Echse" });
-            Zeichen Papier = new Zeichen("Papier", new string[] { "Stein" , "Spock" });
-            Zeichen Echse  = new Zeichen("Echse" , new string[] { "Papier", "Spock" });
-            Zeichen Spock  = new Zeichen("Spock" , new string[] { "Schere", "Stein" });
-
-            // Variablen für das Spiel werden initialisiert
-            Zeichen gegnerZeichen;
-            Zeichen eigenesZeichen;
-            Zeichen[] alleZeichen = new Zeichen[] { Schere, Stein, Papier, Echse, Spock };
+            SSPESController spielController = new SSPESController();
 
             // Spielerzeichen wählen
             Console.WriteLine("Bitte wählen sie ihr Zeichen als Zahl. Möglich sind: ");
             Console.WriteLine(" 0:Schere | 1:Stein | 2:Papier | 3:Echse | 4:Spock");
             Console.WriteLine(" Auswahl bestätigen mit Enter.");
             string auswahlString = Console.ReadLine();
-            int auswahlZahl = Int32.Parse(auswahlString);
-            eigenesZeichen = alleZeichen[auswahlZahl];
-                
-            // Gegnerzeichen wird ein zufälliges Zeichen zugewiesen
-            gegnerZeichen = alleZeichen[zufallszahl(0,4)];
-                    
-            // Die Zeichen spielen gegeneinander
-            // Unentschieden ( gleiche Zeichen )
-            if (eigenesZeichen.getName() == gegnerZeichen.getName())
+            Console.WriteLine(spielController.Spielzug(name, auswahlString));
+
+            // Spiel wiederholen bei Bedarf
+            Console.WriteLine("Möchten sie noch eine Runde spielen, dann schreiben Sie 'ja' und bestätigen mit Enter");
+            if (Console.ReadLine() == "ja")
             {
-                Console.WriteLine("Unentschieden! " + eigenesZeichen.getName() + " und " + gegnerZeichen.getName() + " sind gleiche Zeichen.");
-            } 
-                // Eigenes Zeichen gewinnt
-                if (eigenesZeichen.besiegtZeichen(gegnerZeichen))
-                {
-                    Console.WriteLine( name + " hat gewonnen! " + eigenesZeichen.getName() + " schlägt " + gegnerZeichen.getName() + ".");
-                }
+                // Console.Clear(); noch nicht wirklich nötig, vielleicht später aber
+                spiel(name);
+            }
 
-                // Gegnerisches Zeichen gewinnt
-                if (gegnerZeichen.besiegtZeichen(eigenesZeichen))
-                {
-                    Console.WriteLine( name + " hat verloren! " + gegnerZeichen.getName() + " schlägt " + eigenesZeichen.getName() + ".");
-                }
-
-                // Spiel wiederholen bei Bedarf
-                Console.WriteLine("Möchten sie noch eine Runde spielen, dann schreiben Sie 'ja' und bestätigen mit Enter");
-                if (Console.ReadLine() == "ja")
-                {
-                    spiel(name);
-                }
-        }
-
-        // Zufällige Zahl zwischen min-max wird erzeugt
-        private int zufallszahl(int min, int max)
-        {
-            Random zahl = new Random();
-            int ergebnis = (int)zahl.Next( min , max++);
-            return ergebnis;
         }
 
         static void Main(string[] args)
