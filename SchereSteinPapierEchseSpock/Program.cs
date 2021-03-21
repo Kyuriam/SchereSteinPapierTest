@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 using ZeichenKlasse;
 using Spiellogik;
 using WebApplication1.Controllers;
+using System.Net.Http;
 
 namespace Main
 {
     public class Program
     {
+
+        // Instanz des HttpClients wird erzeugt
+        static readonly HttpClient client = new HttpClient();
+
         // Die Methode für eine Runde Schere Stein Papier Echse Spock
         // Rekursion bei Rückspiel Bedarf des Spielers
         // Der Parameter 'name' ist ein String welcher den Spielernamen wiederspiegelt
@@ -30,10 +35,9 @@ namespace Main
             Console.WriteLine("Möchten sie noch eine Runde spielen, dann schreiben Sie 'ja' und bestätigen mit Enter");
             if (Console.ReadLine() == "ja")
             {
-                // Console.Clear(); noch nicht wirklich nötig, vielleicht später aber
+                // Console.Clear(); nicht wirklich nötig, vielleicht später aber
                 spiel(name);
             }
-
         }
 
         static void Main(string[] args)
@@ -42,6 +46,8 @@ namespace Main
             Console.WriteLine("Bitte geben sie jetzt ihren Spielernamen ein, bestätigen sie mit Enter:");
             string spielerName = Console.ReadLine();
 
+            // Die Client BaseAddress wird festgelegt und das testSpiel wird instanziiert
+            client.BaseAddress = new Uri("https://localhost:44364/");
             Program testSpiel = new Program();
 
             // Einleitung des eigentlichen Spiels
